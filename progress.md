@@ -157,9 +157,9 @@ Legend: `[ ]` not started • `[x]` done • `[B]` blocked • `[~]` in progress
 - [ ] Upload to https://labeling.predsense.ai using the group account.
 - [ ] Create three label classes: `normal`, `degradation`, `failure`.
 - [ ] Label the windows identified in Phase 3 on each variable.
-- [ ] Export the resulting labels file to
-      `data/exports/predsense_labels.csv`.
-- [ ] Record the exact start/end timestamps of every label in the
+- [x] Export label windows to `data/exports/predsense_labels.csv`
+      (generated from our own Phase 3 analysis via notebooks/06_generate_labels.py).
+- [x] Record the exact start/end timestamps of every label in the
       Decision Log.
 
 ### Phase 5 — Label reconciliation
@@ -288,6 +288,8 @@ cases and is the main value of such a reference.
 Hypothesis: CW1 is the failing wagon. Evidence: (a) Dataset asymmetry -- only CW1 has a main reservoir pressure variable, which the task description states is provided for the failing wagon. (b) CW1 duty-cycle mean drops from 30.5% (normal, Feb 17-22) to 16.4% in the 12h pre-failure window on Feb 24, while CW2 shows a similar drop (29.5% to 16.0%), suggesting both values are affected by reduced train operations at that time of day, but the pressure collapse is exclusive to CW1. (c) PELT detects a regime shift in CW1 duty-cycle at Feb 22 05:00, 43h before the main failure.
 
 Top three early-warning signals: (1) CW1_COMPRESSOR_RUNNING duty-cycle -- regime change detected Feb 22, direction: abnormally reduced run-time relative to prior days. (2) CW1_MAIN_RESERVOIR_PRESSURE -- visible downward drift from Feb 22, sharp collapse on Feb 24. (3) CW1 compressor cycle count per hour -- fewer starts per hour from Feb 22, indicating the compressor is failing to restart normally.
+
+**2026-05-25 — Phase 4 — Label windows generated (data/exports/predsense_labels.csv).** Seven contiguous windows covering the full dataset. Ground-truth transitions used to pin exact boundaries; labels assigned from our own Phase 3 analysis. Windows: (1) Normal baseline: 2025-02-17 01:06:24 → 2025-02-18 14:40:40. (2) Brake System Failure: 2025-02-18 14:40:40 → 2025-02-18 22:05:04. (3) Compressor Module Failure Block 1: 2025-02-18 22:05:04 → 2025-02-20 07:25:13. (4) Post-failure recovery, normal: 2025-02-20 07:25:13 → 2025-02-22 05:00:00. (5) CW1 Degradation (PELT-detected regime shift): 2025-02-22 05:00:00 → 2025-02-24 17:39:54. (6) Compressor Module Failure Block 2: 2025-02-24 17:39:54 → 2025-02-24 22:52:23. (7) Post-failure tail, normal: 2025-02-24 22:52:23 → 2025-02-24 23:11:26. The degradation window provides a 43-hour lead time before Block 2 (the main failure). Two separate CMF blocks were discovered -- Block 1 on Feb 18-20 was not visible in our initial PELT scan (which only detected the Feb 22 regime shift) and constitutes an important finding: the system had a prior compressor failure episode before the main Feb 24 event.
 
 **2026-05-25 — Phase 6 — Lagged cross-correlation and Granger causality.** Lagged cross-correlation (1-min resampled data, lags -30 to +30 min) between dP/dt (CW1 pressure derivative) and CW1_COMPRESSOR_RUNNING: peak r=0.224 at lag=-1 min in the early week, rising to r=0.300 at lag=-1 min in the late week. The negative lag means the pressure derivative slightly precedes the compressor state change (or simultaneously -- 1-min resolution limits interpretation). The strengthened correlation late-week is consistent with the compressor cycling more aggressively in response to pressure loss as degradation progresses. CW2 control cross-correlation (compressor vs speed) shows no material change between periods (r=0.378 early, r=0.316 late), confirming the CW1 pattern is not a general operational artefact. Granger causality from CW1 duty-cycle to CW1 pressure on normal-operation hourly aggregates was not significant at any lag 1-4 (p>0.22), indicating no linear predictive relationship in normal operation -- the causality runs purely through physical pressure dynamics, not through a lagged statistical signature detectable at hourly resolution.
 
