@@ -1,0 +1,11 @@
+pandas
+numpy
+pyarrow
+openpyxl
+matplotlib
+seaborn
+scipy
+statsmodels
+ruptures
+scikit-learn
+python-docx

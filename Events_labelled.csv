@@ -1,0 +1,29 @@
+Event Name,Event Start,Event End,Event Type,Severity,Description
+CW1 Post-Replacement Recovery,22.02.2025. 02:29:37,24.02.2025. 23:10:52,Anomaly,Low,"Operations return close to baseline after inferred compressor replacement. CW1 cycle durations recover to ~720s. Compressor load-sharing partially restored (correlation CW1-CW2: -0.57 vs -0.71 baseline). Some residual instability: five intermittent pressure dips with min < 0.5 still observed, suggesting the replaced compressor has not fully bedded in."
+CW1 Compressor Failure,20.02.2025. 07:25:30,21.02.2025. 23:08:39,Failure,High,"CW1 compressor fails to maintain pneumatic pressure. Catastrophic pressure dives: 0.11 on 20.02 07:15, 0.02 on 21.02 06:00. Both compressors run simultaneously up to 100% of the time, trying to compensate. CW1 short-cycling extreme: median ON-cycle drops to 45s on 20.02. Compressor replacement required."
+CW1 Compressor Degradation,18.02.2025. 14:39:59,20.02.2025. 07:23:29,Anomaly,Medium,"CW1 compressor shows early degradation. Median ON-cycle duration drops from ~1440s baseline to <250s. The compressor load-sharing protocol breaks down: both CW1 and CW2 compressors begin running simultaneously, which does not happen in normal operation (baseline co-run rate: 0.85%). Pressure repeatedly drops below 0.7 during this window."
+Normal Operations,17.02.2025. 05:02:41,18.02.2025. 18:27:16,None Chosen,Low,"The blue line (CW1_COMPRESSOR_RUNNING) shows highly regular, periodic cycles. The orange line (CW1_MAIN_RESERVOIR_PRESSURE) consistently oscillates within a healthy, stable upper band (roughly between 0.8 and 1.0)."
+Normal Operations,18.02.2025. 14:41:18,18.02.2025. 19:50:31,None Chosen,High,"Both lines drop, compressors nearly stop"
+Initial Degrdation,18.02.2025. 18:58:59,20.02.2025. 08:03:34,None Chosen,High,"This marks the exact boundary where the system transitions from a healthy, predictable state to anomalous behavior. The regular, periodic duty cycle of Compressor 1 (CW1_COMPRESSOR_RUNNING) completely breaks down, flatlining near zero for an extended duration."
+CW1 Compressor Degradation Begins,18.02.2025. 22:04:58,19.02.2025. 02:30:02,None Chosen,High,CW1 compressor activity drops to 16% while CW2 rises to 73% first sign of CW1 module failure
+Critical Pressure Drop,19.02.2025. 02:29:38,19.02.2025. 02:40:11,None Chosen,High,Sharp spike to 1.0 on both lines simultaneously
+CW1 Reduced Activity,19.02.2025. 02:29:38,19.02.2025. 02:40:11,None Chosen,High,CW1 consistently running at 27% vs normal 35%. Never fully recovers confirmed compressor module failure
+Cw2 irregular frequency,20.02.2025. 13:08:42,22.02.2025. 01:03:09,None Chosen,Medium,compressor starts switching on and off more frequently
+Irregular Window 2,22.02.2025. 20:02:58,23.02.2025. 11:13:03,None Chosen,High,"The Anomaly: The compressor enters a high-frequency ""short-cycling"" state (visible as the dense blue block). The component is turning on and off rapidly to keep up with system demand. The Pressure Drop: During the second flagged window (Feb 22, 20:02 to Feb 23, 11:15), despite the intense compressor activity, the reservoir pressure cannot stabilize. The rapid short-cycling indicates the system is working significantly harder to maintain minimum operating pressure, pointing to a persistent system leak or major efficiency loss in the pump mechanism."
+Brakes Anomaly,24.02.2025. 18:11:02,24.02.2025. 22:38:51,None Chosen,High,"Brakes locks for a long time, compressor shows erratic data"
+Train was probably not running,18.02.2025. 19:33:56,19.02.2025. 02:36:57,None Chosen,None Chosen,None
+Break System Failure,18.02.2025. 14:40:13,18.02.2025. 19:49:39,None Chosen,High,None
+Compressor Module Failure,18.02.2025. 22:04:54,19.02.2025. 02:40:24,None Chosen,High,None
+Compressor Module Failure,24.02.2025. 17:39:56,24.02.2025. 22:52:19,None Chosen,High,None
+CW1 Compressor Running,18.02.2025. 14:46:23,18.02.2025. 17:48:47,None Chosen,Low,None
+CW1 Main Reservoir Pressure,"18.02.2025. 15:59:53
+",18.02.2025. 19:02:28,None Chosen,Medium,"Normal operating average:
+~0.90
+During compressor failure:
+drops to ~0.87
+Severe degradation observed:
+down to ~0.69 shortly after failure onset  
+Pressure becomes unstable "
+3 variables difference,18.02.2025. 16:00:29,18.02.2025. 22:06:13,None Chosen,High,"reservoir pressure weakens,
+compressor behavior becomes unstable,
+the second wagon compressor compensates aggressively. CW1_MAIN_RESERVOIR_PRESSURE,  CW2_COMPRESSOR_RUNNING, CW1_COMPRESSOR_RUNNING "
